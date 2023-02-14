@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
 import Counter from './counter'
-import TotalCounter from './TotalCounter'
+import TotalCounter from './totalCounter'
 import Clock from './clock'
 
 function Page({ linkTo, NavigateTo, title }) {
