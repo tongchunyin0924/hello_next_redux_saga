@@ -7,6 +7,12 @@ const initialState = {
   lastUpdate: 0,
   light: false,
   placeholderData: null,
+  counters: [
+    { id: 1, count: 0 },
+    { id: 2, count: 0 },
+    { id: 3, count: 0 },
+    { id: 4, count: 0 },
+    { id: 5, count: 0 }],
 }
 
 function reducer(state = initialState, action) {
@@ -21,18 +27,50 @@ function reducer(state = initialState, action) {
         ...{ error: action.error },
       }
 
-    case actionTypes.INCREMENT:
+    case actionTypes.INCREMENT: {
+
+      let id = action.id
+      let counters = [...state.counters]
+      
+      let newCounters = counters.map(function(d){
+        if (d.id === id) {
+          return {
+            ...d,
+            ...{count: d.count + 1}
+          }
+        }
+        return d
+      })
+
       return {
         ...state,
-        ...{ count: state.count + 1 },
+        ...{
+          counters: newCounters
+        }
       }
+    }
+    case actionTypes.DECREMENT: {
 
-    case actionTypes.DECREMENT:
+      let id = action.id
+      let counters = [...state.counters]
+      
+      let newCounters = counters.map(function(d){
+        if (d.id === id && d.count > 0) {
+          return {
+            ...d,
+            ...{count: d.count - 1}
+          }
+        }
+        return d
+      })
+
       return {
         ...state,
-        ...{ count: state.count - 1 },
+        ...{
+          counters: newCounters
+        }
       }
-
+    }
     case actionTypes.RESET:
       return {
         ...state,

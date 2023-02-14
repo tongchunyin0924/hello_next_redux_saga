@@ -17,12 +17,18 @@ export function failure(error) {
   }
 }
 
-export function increment() {
-  return { type: actionTypes.INCREMENT }
+export function increment(id) {
+  return {
+    type: actionTypes.INCREMENT,
+    id
+  }
 }
 
-export function decrement() {
-  return { type: actionTypes.DECREMENT }
+export function decrement(id) {
+  return {
+    type: actionTypes.DECREMENT,
+    id
+  }
 }
 
 export function reset() {
